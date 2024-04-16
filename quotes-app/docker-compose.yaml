@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  quotes-database:
+    container_name: quotes-database
+    build:
+      context: ./database
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./env/database.env
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  quotes-backend:
+    container_name: quotes-backend
+    build:
+      context: ./backend
+      args: 
+        JAR_FILE: build/libs/quotes-0.0.1-SNAPSHOT.jar
+    ports:
+      - "8080:8080"
+    depends_on:
+      - quotes-database
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://quotes-database:5432/kodilla-quotes
+    env_file:
+      - ./env/backend.env
+
+  quotes-frontend:
+    container_name: quotes-frontend
+    build:
+      context: ./frontend
+    ports:
+      - "90:80"
+
+volumes:
+  postgres-data:
