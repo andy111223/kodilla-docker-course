@@ -1,0 +1,37 @@
+# General
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
+.git
+.gitignore
+README.md
+LICENSE
+
+# Java
+*.class
+*.jar
+*.war
+target/
+build/
+out/
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Node.js
+*.log
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# React
+/build
+/.cache
+/.vscode
+/public/*.map
+/src/**/*.test.js
+/src/**/*.test.jsx
+/src/**/*.spec.js
+/src/**/*.spec.jsx

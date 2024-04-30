@@ -1,0 +1,40 @@
+version: '3'
+services:
+  store-frontend:
+    image: andy111223/store-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - products-api
+
+  products-api:
+    image: andy111223/products-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - rabbitmq
+
+  notifications-api:
+    image: andy111223/notifications-api
+    ports:
+      - "5001:5001"
+    depends_on:
+      - rabbitmq
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: store
+    ports:
+      - "3306:3306"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+volumes:
+  db-data:
