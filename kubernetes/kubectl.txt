@@ -1,0 +1,20 @@
+microk8s kubectl create ns nginx-ns
+
+microk8s kubectl -n nginx-ns create deployment --image=nginx nginx-app
+
+microk8s kubectl -n nginx-ns get deployments
+
+microk8s kubectl -n nginx-ns describe deployments nginx-app
+
+microk8s kubectl -n nginx-ns get pods -o name
+
+microk8s kubectl -n nginx-ns get deployments -o yaml
+
+microk8s kubectl -n nginx-ns exec nginx-app-5777b5f95-qrnr4 -- cat /etc/hosts
+
+microk8s kubectl -n nginx-ns delete pod nginx-app-5777b5f95-qrnr4
+
+microk8s kubectl -n nginx-ns delete deployment nginx-app
+
+microk8s kubectl delete ns nginx-ns
+

@@ -6,6 +6,9 @@ COPY package.json .
 
 RUN npm install
 
+# Install Bash
+RUN apk add --no-cache bash
+
 COPY . .
 
 EXPOSE 8000
